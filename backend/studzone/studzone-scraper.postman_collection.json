@@ -1,0 +1,171 @@
+{
+  "info": {
+    "_postman_id": "6315fd10-e8d6-4698-9462-279d8da47fdf",
+    "name": "studzone-scraper",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45998908"
+  },
+  "item": [
+    {
+      "name": "1 - GET Login Page",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const html = pm.response.text();\n// Explicitly targets the clean value string\nconst match = html.match(/name=\"__RequestVerificationToken\"[^>]*value=\"([^\"]+)\"/);\n\nif (match && match[1]) {\n    // match[1] isolates the exact alphanumeric string inside the quotes\n    pm.collectionVariables.set('csrf', match[1]);\n    console.log('Clean Token Successfully Synced:', match[1]);\n} else {\n    console.warn('Could not find token attribute structure.');\n}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "https://ecampus.psgtech.ac.in/studzone",
+          "protocol": "https",
+          "host": [
+            "ecampus",
+            "psgtech",
+            "ac",
+            "in"
+          ],
+          "path": [
+            "studzone"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 - Login POST",
+      "protocolProfileBehavior": {
+        "followRedirects": false
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+          },
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "rollno",
+              "value": "{{rollno}}"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}"
+            },
+            {
+              "key": "chkterms",
+              "value": "on"
+            },
+            {
+              "key": "__RequestVerificationToken",
+              "value": "{{csrf}}"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://ecampus.psgtech.ac.in/studzone",
+          "protocol": "https",
+          "host": [
+            "ecampus",
+            "psgtech",
+            "ac",
+            "in"
+          ],
+          "path": [
+            "studzone"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 - GET target",
+      "protocolProfileBehavior": {
+        "followRedirects": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+          }
+        ],
+        "url": {
+          "raw": "https://ecampus.psgtech.ac.in/studzone/Attendance/AttendanceMenu",
+          "protocol": "https",
+          "host": [
+            "ecampus",
+            "psgtech",
+            "ac",
+            "in"
+          ],
+          "path": [
+            "studzone",
+            "Attendance",
+            "AttendanceMenu"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4 - Attendance",
+      "protocolProfileBehavior": {
+        "followRedirects": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://ecampus.psgtech.ac.in/studzone/Attendance/StudentPercentage",
+          "protocol": "https",
+          "host": [
+            "ecampus",
+            "psgtech",
+            "ac",
+            "in"
+          ],
+          "path": [
+            "studzone",
+            "Attendance",
+            "StudentPercentage"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "csrf",
+      "value": ""
+    },
+    {
+      "key": "rollno",
+      "value": ""
+    },
+    {
+      "key": "password",
+      "value": ""
+    }
+  ]
+}
