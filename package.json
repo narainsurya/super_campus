@@ -1,0 +1,23 @@
+{
+  "name": "super_campus",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/narainsurya/super_campus#readme",
+  "bugs": {
+    "url": "https://github.com/narainsurya/super_campus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narainsurya/super_campus.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
